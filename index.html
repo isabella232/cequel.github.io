@@ -53,18 +53,17 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-                <h1>Cequel</h1>
-                <h3>Big data meets rapid development</h3>
+                <p>Cequel is a full-featured Cassandra ORM for Ruby.</p>
                 </section>
                 <section>
-                <h2>Install it</h2>
+                <h3>Install it.</h3>
                 <pre><code>source 'https://rubygems.org'
 
 gem 'rails'
 <span class="type">gem 'cequel'</span></code></pre>
 				</section>
                 <section>
-                <h2>Create a model</h2>
+                <h3>Create a model.</h3>
                 <pre><code><span class="type">class User
   include Cequel::Record
 
@@ -77,14 +76,14 @@ end</span></code></pre>
                 </section>
 
                 <section>
-                <h2>Automatic Migrations</h2>
+                <h3>Migrate automatically.</h3>
                 <pre><code>$ <span class="type">rake cequel:migrate</span>
 <span class="respond">Synchronized schema for User
 $ </span></code></pre>
                 </section>
 
                 <section>
-                <h2>Declare relationships</h2>
+                <h3>Declare relationships.</h3>
                 <pre><code>class User
   include Cequel::Record
 
@@ -99,7 +98,7 @@ end</code></pre>
                 </section>
 
                 <section>
-                <h2>Declare relationships</h2>
+                <h3>Declare relationships.</h3>
                 <pre><code><span class="type">class Message
   belongs_to :user
   key :id, :timeuuid, auto: true, order: :desc
@@ -109,7 +108,7 @@ end</span></code></pre>
                 </section>
 
                 <section>
-                <h2>Use relationships</h2>
+                <h3>Use relationships.</h3>
                 <pre><code>class MessagesController &lt; ApplicationController<span class="type">
   def index
     @messages = current_user.messages.from(1.week.ago).limit(10)
@@ -124,7 +123,7 @@ end</span></code></pre>
 end</code></pre>
                 </section>
                 <section data-duration="4">
-                <h2>Works with</h2>
+                <h3>Use it with</h3>
                 <ul>
                     <li>Ruby 1.9, 2.0, 2.1</li>
                     <li>Rails 3, Rails 4, or no Rails</li>
@@ -137,6 +136,8 @@ end</code></pre>
 			</div>
 		</div>
 
+        <a href="https://github.com/cequel/cequel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -147,7 +148,8 @@ end</code></pre>
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
+				controls: false,
+                keyboard: false,
 				progress: false,
 				history: false,
 				center: true,
@@ -185,6 +187,12 @@ end</code></pre>
                 var animatedSections = $currentSlide.find('.type, .respond')
                   .toArray();
 
+                if (Reveal.isLastSlide()) {
+                  Reveal.configure({
+                    controls: true,
+                    keyboard: true
+                  });
+                }
 
                 var typeNext = function () {
                   var $section;
@@ -216,7 +224,15 @@ end</code></pre>
                 //console.log(event.currentSlide);
             });
         </script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+          ga('create', 'UA-7504578-5', 'cequel.github.io');
+          ga('send', 'pageview');
 
+        </script>
 	</body>
 </html>
